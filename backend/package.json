@@ -1,0 +1,23 @@
+{
+  "name": "asweep-backend",
+  "version": "1.0.0",
+  "description": "AceSweeps Casino Backend API",
+  "main": "api/backend.ts",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc",
+    "deploy": "vercel --prod",
+    "start": "node dist/api/backend.js"
+  },
+  "dependencies": {
+    "@vercel/node": "^3.0.7",
+    "@neondatabase/serverless": "^0.9.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

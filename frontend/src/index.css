@@ -1,0 +1,315 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+/* Ensure body is always visible */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+
+
+.text-gradient {
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.button-primary {
+  position: relative;
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
+  transform: skewX(-15deg);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease-in-out;
+}
+
+.button-primary .button-content {
+  display: inline-block;
+  transform: skewX(15deg); /* Reverses skew for inner content */
+  color: white;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Unfilled variant */
+.button-outline {
+  position: relative;
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: transparent;
+  border: 2px solid #e100ff;
+  transform: skewX(-15deg);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background 0.3s, color 0.3s;
+}
+
+.button-outline .button-content {
+  display: inline-block;
+  transform: skewX(15deg);
+  /* color: #e100ff; */
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.button-outline:hover {
+  /* background: linear-gradient(135deg, #7f00ff, #e100ff); */
+}
+
+.button-outline:hover .button-content {
+  color: white;
+}
+
+
+/* === Size Variants === */
+.button-primary.sm {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.875rem;
+}
+.button-primary.md {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+}
+.button-primary.lg {
+  padding: 1rem 2.5rem;
+  font-size: 1.25rem;
+}
+.button-primary.xl {
+  padding: 1.25rem 3rem;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .button-primary {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.875rem;
+    max-width: 220px;
+  }
+}
+
+.text-primary {
+  font-family: "Lato", sans-serif;
+  color: inherit;
+}
+
+.text-secondary {
+  font-family: "Poppins", sans-serif;
+  color: inherit;
+}
+
+/* === Size Variants === */
+.text-xs {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.12px;
+}
+
+.text-sm {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+}
+
+.text-base {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.24px;
+}
+
+.text-lg {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.27px;
+}
+
+.text-xl {
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.4px;
+}
+
+.text-2xl {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.48px;
+}
+
+.text-3xl {
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: 0.75px;
+}
+
+.text-4xl {
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: 0.9px;
+}
+
+/* === Font Weight === */
+.font-thin {
+  font-weight: 100;
+}
+.font-extralight {
+  font-weight: 200;
+}
+.font-light {
+  font-weight: 300;
+}
+.font-normal {
+  font-weight: 400;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-extrabold {
+  font-weight: 800;
+}
+.font-black {
+  font-weight: 900;
+}
+.text-custom-30 {
+  font-size: 26px; /* 30.77px / 16 = 1.923rem */
+  line-height: 1.106; /* 110.6% */
+  letter-spacing: 0.04em; /* 4% of font size */
+}
+.text-custom {
+  line-height: 1.106; /* 110.6% */
+  letter-spacing: 0.04em; /* 4% of font size */
+}
+
+.bg-hero {
+  background-image: url("./assets/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.circle-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  color: white;
+  font-size: 20px;
+}
+
+
+
+
+.circle-curve-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  color: white;
+  font-size: 20px;
+}
+
+.circle-button:hover {
+  transform: scale(1.05);
+}
+
+
+.rectangle-button {
+  padding: 4px 10px;
+  min-width: 40px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+}
+.rectangle-button:hover {
+  transform: scale(1.05);
+}
+
+
+.button-primary-mobile {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease-in-out;
+  border-radius: 8px; 
+  font-weight: 800;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  font-size: 0.75rem; 
+  line-height: 1;
+  user-select: none;
+}
+
+.button-primary-mobile:hover {
+  transform: scale(1.05);
+}
+
+.button-primary-mobile .button-content {
+  display: inline-block;
+  transform: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .button-primary {
+    padding: 0.4rem 1rem;
+    max-width: 140px; 
+  }
+
+  .button-primary .button-content {
+    transform: none !important;
+    white-space: nowrap;
+    font-size: 0.75rem; 
+  }
+}
