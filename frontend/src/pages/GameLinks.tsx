@@ -8,19 +8,19 @@ const games = [
     name: "FireKirin", 
     image: "/jpg/fire.jpg", 
     link: "https://firekirin.com/",
-    adminlink: "https://agent.firekirin.com/"
+    adminlink: "https://firekirin.xyz:8888/default.aspx?638909852803346521"
   },
   {
     name: "OrionStar",
     image: "/jpg/orion.jpg",
     link: "http://start.orionstars.vip:8580/",
-    adminlink: "http://agent.orionstars.vip:8580/"
+    adminlink: "https://orionstars.vip:8781/default.aspx?638909853161527153"
   },
   { 
     name: "Juwa", 
     image: "/jpg/juwa.jpg", 
     link: "https://dl.juwa777.com/",
-    adminlink: "https://agent.juwa777.com/"
+    adminlink: "https://ht.juwa777.com/login"
   },
   // { name: "Game", image: "/jpg/gamee.jpg", link:"" },
   {
