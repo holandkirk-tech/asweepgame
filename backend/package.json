@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'No build step needed for serverless'",
-    "start": "node api/backend.js"
+    "build": "echo 'Serverless function build handled by Vercel'"
   },
   "dependencies": {
     "@vercel/node": "^3.0.7",
