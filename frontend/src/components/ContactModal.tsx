@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
-import { IoIosCall, IoClose } from "react-icons/io";
+import { IoIosCall } from "react-icons/io";
+import { MdClose } from "react-icons/md";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -59,7 +60,7 @@ const ContactModal = ({ isOpen, onClose, type, phoneNumber }: ContactModalProps)
             onClick={onClose}
             className="p-2 rounded-full hover:bg-white/10 transition-colors"
           >
-            <IoClose className="text-gray-400 hover:text-white" size={24} />
+            <MdClose className="text-gray-400 hover:text-white" size={24} />
           </button>
         </div>
 
