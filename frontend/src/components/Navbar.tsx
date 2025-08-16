@@ -7,7 +7,7 @@ import { CiLock } from "react-icons/ci";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import ContactModal from "./ContactModal";
+// import ContactModal from "./ContactModal"; // Temporarily disabled for testing
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -65,20 +65,12 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
             <div className="flex gap-4 p-2">
-              <button 
-                className="circle-button hover:scale-110 transition-transform"
-                onClick={() => setShowTelegramModal(true)}
-                aria-label="Contact via Telegram"
-              >
+              <div className="circle-button">
                 <FaTelegramPlane color="black" size={22} />
-              </button>
-              <button 
-                className="circle-button hover:scale-110 transition-transform"
-                onClick={() => setShowWhatsAppModal(true)}
-                aria-label="Contact via WhatsApp"
-              >
+              </div>
+              <div className="circle-button">
                 <IoIosCall color="black" size={22} />
-              </button>
+              </div>
               <div className="circle-button">
                 <IoIosInformation color="black" size={36} />
               </div>
@@ -131,20 +123,12 @@ const Navbar = () => {
 {menuOpen && (
   <div className="md:hidden mt-4 bg-white/10 backdrop-blur-sm rounded-lg p-4 space-y-4">
     <div className="flex justify-center gap-6">
-      <button 
-        className="circle-button hover:scale-110 transition-transform"
-        onClick={() => setShowTelegramModal(true)}
-        aria-label="Contact via Telegram"
-      >
+      <div className="circle-button">
         <FaTelegramPlane color="black" size={25} />
-      </button>
-      <button 
-        className="circle-button hover:scale-110 transition-transform"
-        onClick={() => setShowWhatsAppModal(true)}
-        aria-label="Contact via WhatsApp"
-      >
+      </div>
+      <div className="circle-button">
         <IoIosCall color="black" size={25} />
-      </button>
+      </div>
       <div className="circle-button">
         <IoIosInformation color="black" size={40} />
       </div>
@@ -268,8 +252,8 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Contact Modals */}
-      <ContactModal
+      {/* Contact Modals - Temporarily disabled for testing */}
+      {/* <ContactModal
         isOpen={showWhatsAppModal}
         onClose={() => setShowWhatsAppModal(false)}
         type="whatsapp"
@@ -281,7 +265,7 @@ const Navbar = () => {
         onClose={() => setShowTelegramModal(false)}
         type="telegram"
         phoneNumber="8177509750"
-      />
+      /> */}
     </>
   );
 };

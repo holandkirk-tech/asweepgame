@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaTelegramPlane } from "react-icons/fa";
 import { IoIosCall, IoClose } from "react-icons/io";
 import { FaWhatsapp } from "react-icons/fa";
@@ -11,8 +11,6 @@ interface ContactModalProps {
 }
 
 const ContactModal = ({ isOpen, onClose, type, phoneNumber }: ContactModalProps) => {
-  if (!isOpen) return null;
-
   const isWhatsApp = type === "whatsapp";
   
   const handleContactClick = () => {
@@ -26,7 +24,9 @@ const ContactModal = ({ isOpen, onClose, type, phoneNumber }: ContactModalProps)
   };
 
   return (
-    <motion.div
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -114,6 +114,8 @@ const ContactModal = ({ isOpen, onClose, type, phoneNumber }: ContactModalProps)
         </div>
       </motion.div>
     </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
