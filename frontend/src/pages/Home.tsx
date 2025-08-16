@@ -79,16 +79,16 @@ const Home = () => {
 
     try {
       const response = await apiService.spin(codeString);
-      if (response.success && response.result) {
+      if (response.success) {
         // Transform the new backend response to match expected format
         setResult({ 
-          prizeCents: response.result.prize_cents || 0 
+          prizeCents: (response.prize || 0) * 100 // Convert dollars to cents
         });
         setShowResult(true);
         // Clear the code after successful spin
         setCode(["", "", "", "", ""]);
       } else {
-        setError("Spin failed. Please try again.");
+        setError(response.message || "Spin failed. Please try again.");
       }
     } catch (err: any) {
       setError(err.response?.data?.error || "Failed to spin. Please try again.");

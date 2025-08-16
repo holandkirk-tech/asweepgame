@@ -25,15 +25,27 @@ export const apiService = {
     return response.data;
   },
 
+  // Get all spin results and codes with statistics
+  getSpinResults: async (limit = 50, offset = 0) => {
+    const response = await apiClient.get(`/api/admin/spin-results?limit=${limit}&offset=${offset}`);
+    return response.data;
+  },
+
+  // Get detailed analytics
+  getAnalytics: async () => {
+    const response = await apiClient.get('/api/admin/analytics');
+    return response.data;
+  },
+
   // Verify if a code is valid (from old backend - keeping for compatibility)
   verifyCode: async (code: string) => {
     const response = await apiClient.post('/spin/verify', { code });
     return response.data;
   },
 
-  // Spin the wheel with a code (from old backend - keeping for compatibility)
+  // Spin the wheel with a code (updated for new backend)
   spin: async (code: string) => {
-    const response = await apiClient.post('/spin/play', { code });
+    const response = await apiClient.post('/api/player/spin', { code });
     return response.data;
   },
 

@@ -32,17 +32,19 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       // Try to get results from the new backend
-      const data = await apiService.getResults();
+      const data = await apiService.getSpinResults(50, 0);
       if (data.success) {
-        // Transform data to match expected format
+        // Transform data to match expected format using new backend structure
         const transformedData = {
-          totalCents: data.results.reduce((sum: number, result: any) => sum + (result.prize_cents || 0), 0),
-          count: data.total || data.results.length,
-          items: data.results.map((result: any) => ({
-            id: result.id.toString(),
-            prizeCents: result.prize_cents || 0,
-            createdAt: result.created_at,
-          }))
+          totalCents: data.statistics.totalPrizeAmount * 100, // Convert dollars to cents
+          count: data.statistics.totalSpins,
+          items: data.results
+            .filter((result: any) => result.spin_time) // Only include results that have been spun
+            .map((result: any) => ({
+              id: result.spin_id?.toString() || result.code,
+              prizeCents: (result.prize || 0) * 100, // Convert dollars to cents
+              createdAt: result.spin_time,
+            }))
         };
         setWinData(transformedData);
       } else {
@@ -68,6 +70,12 @@ export default function AdminDashboard() {
       const response = await apiService.generateCode();
       if (response.success) {
         setGeneratedCode(response.code.toString());
+        // Store the validity info for display
+        localStorage.setItem('lastGeneratedCodeInfo', JSON.stringify({
+          code: response.code,
+          validFor: response.validFor || "3 hours",
+          validUntil: response.validUntil
+        }));
       } else {
         setError("Failed to generate code");
       }
@@ -160,12 +168,22 @@ export default function AdminDashboard() {
             ))}
           </div>
 
-          {generatedCode && (
-            <div className="text-center">
-              <p className="text-green-400 text-sm">✅ Code generated successfully! Valid for 10 minutes.</p>
-              <p className="text-gray-300 text-xs mt-1">Code: <span className="font-mono font-bold">{generatedCode}</span></p>
-            </div>
-          )}
+                            {generatedCode && (
+                    <div className="text-center">
+                      <p className="text-green-400 text-sm">✅ Code generated successfully! Valid for 3 hours.</p>
+                      <p className="text-gray-300 text-xs mt-1">Code: <span className="font-mono font-bold">{generatedCode}</span></p>
+                      {(() => {
+                        const codeInfo = localStorage.getItem('lastGeneratedCodeInfo');
+                        if (codeInfo) {
+                          const info = JSON.parse(codeInfo);
+                          if (info.validUntil) {
+                            return <p className="text-gray-400 text-xs mt-1">Expires: {new Date(info.validUntil).toLocaleString()}</p>;
+                          }
+                        }
+                        return null;
+                      })()}
+                    </div>
+                  )}
         </div>
 
         {/* Spin Records Table */}
