@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const games = [
+// Type definition for games
+interface Game {
+  name: string;
+  image: string;
+  link: string;
+  adminlink?: string;
+}
+
+const games: Game[] = [
   { 
     name: "FireKirin", 
     image: "/jpg/fire.jpg", 
@@ -300,6 +308,11 @@ const GameLinks = () => {
     filter === "player"
       ? games.filter((g) => g.link && g.link !== "nolink")
       : games.filter((g) => g.adminlink && g.adminlink !== "nolink");
+
+  // Debug logging
+  console.log(`Current filter: ${filter}`);
+  console.log(`Filtered games count: ${filteredGames.length}`);
+  console.log('Sample filtered games:', filteredGames.slice(0, 3));
 
   return (
     <div className="p-1 sm:p-6 md:p-8 max-w-[1280px] mx-auto">
