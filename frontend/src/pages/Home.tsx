@@ -52,7 +52,8 @@ const Home = () => {
   };
 
   const handleCodeChange = (index: number, value: string) => {
-    if (value.length > 1) return; // Only allow single digit
+    // Only allow numeric input
+    if (value.length > 1 || (value && !/^\d$/.test(value))) return;
     
     const newCode = [...code];
     newCode[index] = value;
@@ -182,10 +183,18 @@ const Home = () => {
               <input
                 key={i}
                 type="text"
+                inputMode="numeric"
+                pattern="[0-9]"
                 maxLength={1}
                 value={code[i]}
-                className="w-10 h-10 sm:w-12 sm:h-12 text-center text-lg sm:text-xl font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6d68f7] text-secondary"
+                className="w-10 h-10 sm:w-12 sm:h-12 text-center text-lg sm:text-xl font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6d68f7] bg-white text-black"
                 onChange={(e) => handleCodeChange(i, e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Backspace' && !code[i] && i > 0) {
+                    const prevInput = document.getElementById(`pin-${i - 1}`);
+                    prevInput?.focus();
+                  }
+                }}
                 id={`pin-${i}`}
                 disabled={isSpinning}
               />
