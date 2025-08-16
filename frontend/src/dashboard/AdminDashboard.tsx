@@ -31,12 +31,30 @@ export default function AdminDashboard() {
   const loadWinData = async () => {
     try {
       setLoading(true);
-      const data = await apiService.getWins();
-      setWinData(data);
+      // Try to get results from the new backend
+      const data = await apiService.getResults();
+      if (data.success) {
+        // Transform data to match expected format
+        const transformedData = {
+          totalCents: data.results.reduce((sum: number, result: any) => sum + (result.prize_cents || 0), 0),
+          count: data.total || data.results.length,
+          items: data.results.map((result: any) => ({
+            id: result.id.toString(),
+            prizeCents: result.prize_cents || 0,
+            createdAt: result.created_at,
+          }))
+        };
+        setWinData(transformedData);
+      } else {
+        // Fallback to empty data
+        setWinData({ totalCents: 0, count: 0, items: [] });
+      }
       setError("");
     } catch (err: any) {
       setError(err.response?.data?.error || "Failed to load data");
       console.error("Failed to load win data:", err);
+      // Set empty data on error
+      setWinData({ totalCents: 0, count: 0, items: [] });
     } finally {
       setLoading(false);
     }
@@ -46,9 +64,13 @@ export default function AdminDashboard() {
     try {
       setIsGenerating(true);
       setError("");
-      // Generate code with 10 minute TTL (600 seconds)
-      const response = await apiService.createCode(600);
-      setGeneratedCode(response.code);
+      // Generate 5-digit code using new backend
+      const response = await apiService.generateCode();
+      if (response.success) {
+        setGeneratedCode(response.code.toString());
+      } else {
+        setError("Failed to generate code");
+      }
       // Refresh win data to show updated stats
       await loadWinData();
     } catch (err: any) {

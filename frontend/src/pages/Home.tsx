@@ -79,10 +79,17 @@ const Home = () => {
 
     try {
       const response = await apiService.spin(codeString);
-      setResult(response);
-      setShowResult(true);
-      // Clear the code after successful spin
-      setCode(["", "", "", "", ""]);
+      if (response.success && response.result) {
+        // Transform the new backend response to match expected format
+        setResult({ 
+          prizeCents: response.result.prize_cents || 0 
+        });
+        setShowResult(true);
+        // Clear the code after successful spin
+        setCode(["", "", "", "", ""]);
+      } else {
+        setError("Spin failed. Please try again.");
+      }
     } catch (err: any) {
       setError(err.response?.data?.error || "Failed to spin. Please try again.");
       console.error("Spin failed:", err);

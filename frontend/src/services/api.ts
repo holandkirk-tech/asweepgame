@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-// Get API base URL from environment or default to relative path
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/backend';
+// Get backend URL from environment
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
 
 // Create axios instance with default config
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
-  withCredentials: true, // Enable cookies for session management
+  baseURL: BACKEND_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -16,36 +15,63 @@ const apiClient = axios.create({
 export const apiService = {
   // Admin login
   login: async (username: string, password: string) => {
-    const response = await apiClient.post('?op=login', { username, password });
+    const response = await apiClient.post('/api/admin/login', { username, password });
     return response.data;
   },
 
-  // Create a new code (admin only)
-  createCode: async (ttlSeconds?: number) => {
-    const response = await apiClient.post('?op=create_code', { ttlSeconds });
+  // Generate a new 5-digit code
+  generateCode: async () => {
+    const response = await apiClient.get('/api/admin/generate-code');
     return response.data;
   },
 
-  // Spin the wheel with a code
+  // Verify if a code is valid (from old backend - keeping for compatibility)
+  verifyCode: async (code: string) => {
+    const response = await apiClient.post('/spin/verify', { code });
+    return response.data;
+  },
+
+  // Spin the wheel with a code (from old backend - keeping for compatibility)
   spin: async (code: string) => {
-    const response = await apiClient.post('?op=spin', { code });
+    const response = await apiClient.post('/spin/play', { code });
     return response.data;
   },
 
-  // Get winnings (admin only)
-  getWins: async (from?: string, to?: string) => {
-    const params = new URLSearchParams();
-    if (from) params.append('from', from);
-    if (to) params.append('to', to);
-    
-    const response = await apiClient.get(`?op=wins&${params.toString()}`);
+  // Get all generated codes (from old backend - keeping for compatibility)
+  getCodes: async () => {
+    const response = await apiClient.get('/admin/codes');
     return response.data;
   },
 
-  // Logout (admin)
+  // Get spin results (from old backend - keeping for compatibility) 
+  getResults: async (limit = 50, offset = 0) => {
+    const response = await apiClient.get(`/admin/results?limit=${limit}&offset=${offset}`);
+    return response.data;
+  },
+
+  // Test database connection
+  testDatabase: async () => {
+    const response = await apiClient.get('/api/db-test');
+    return response.data;
+  },
+
+  // Health check
+  healthCheck: async () => {
+    const response = await apiClient.get('/health');
+    return response.data;
+  },
+
+  // Legacy compatibility methods
+  createCode: async () => {
+    return await apiService.generateCode();
+  },
+
+  getWins: async () => {
+    return await apiService.getResults();
+  },
+
   logout: async () => {
-    const response = await apiClient.post('?op=logout');
-    return response.data;
+    return { success: true, message: 'Logged out' };
   },
 };
 

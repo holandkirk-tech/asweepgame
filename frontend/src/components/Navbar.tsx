@@ -26,16 +26,18 @@ const Navbar = () => {
     try {
       const result = await apiService.login(identifier, password);
       
-      if (result.ok) {
+      if (result.success) {
         // Navigate to admin page
         navigate("/admin");
-        // Close modal
+        // Close modal and reset form
         setShowModal(false);
+        setIdentifier("");
+        setPassword("");
       } else {
-        setError("Invalid username or password");
+        setError(result.message || "Invalid username or password");
       }
-    } catch {
-      setError("Invalid username or password");
+    } catch (err: any) {
+      setError(err.response?.data?.message || "Invalid username or password");
     }
   };
 

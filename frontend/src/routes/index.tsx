@@ -10,6 +10,7 @@ const AcceptPayment = lazy(() => import("../components/AcceptPayment"));
 const Navbar = lazy(() => import("../components/Navbar"));
 const AdminNavbar = lazy(() => import("../components/AdminNavbar"));
 const TopWheelersPanel = lazy(() => import("../components/TopWheelersPanel"));
+const BackendStatus = lazy(() => import("../components/BackendStatus"));
 
 // Layouts
 const MainLayout = ({ children }: { children: React.ReactNode }) => (
@@ -43,6 +44,7 @@ export default function AppRoutes() {
               <TopWheelersPanel />
               <GameLinks />
               <AcceptPayment />
+              <BackendStatus />
             </MainLayout>
           }
         />
