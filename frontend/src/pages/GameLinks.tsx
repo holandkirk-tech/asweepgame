@@ -125,7 +125,7 @@ const games: Game[] = [
     name: "Moolah",
     image: "/jpg/moolah.jpg",
     link: "https://moolah.vip:8888/",
-    adminlink: " https://moolah.vip:8781/default.aspx?638294807507914993",
+    adminlink: "https://moolah.vip:8781/default.aspx?638294807507914993",
   },
   { 
     name: "Sirus", 
@@ -306,13 +306,10 @@ const GameLinks = () => {
 
   const filteredGames =
     filter === "player"
-      ? games.filter((g) => g.link && g.link !== "nolink")
-      : games.filter((g) => g.adminlink && g.adminlink !== "nolink");
+      ? games.filter((g) => g.link && g.link !== "nolink" && g.link.trim() !== "")
+      : games.filter((g) => g.adminlink && g.adminlink !== "nolink" && g.adminlink.trim() !== "");
 
-  // Debug logging
-  console.log(`Current filter: ${filter}`);
-  console.log(`Filtered games count: ${filteredGames.length}`);
-  console.log('Sample filtered games:', filteredGames.slice(0, 3));
+
 
   return (
     <div className="p-1 sm:p-6 md:p-8 max-w-[1280px] mx-auto">
