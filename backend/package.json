@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vercel dev",
     "build": "echo 'No build step needed for serverless'",
-    "start": "echo 'Serverless function - no start command'"
+    "start": "node api/backend.js"
   },
   "dependencies": {
     "@vercel/node": "^3.0.7",
@@ -17,6 +17,6 @@
     "@types/node": "^20.0.0"
   },
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   }
 }
