@@ -39,55 +39,55 @@ const games = [
     name: "VegasSweep",
     image: "/jpg/vegas.jpg",
     link: "https://m.lasvegassweeps.com/",
-    adminlink: "https://agent.lasvegassweeps.com/"
+    adminlink: "https://agent.lasvegassweeps.com/login"
   },
   {
     name: "MilkyWay",
     image: "/jpg/milkyways.jpg",
     link: "https://milkywayapp.xyz/",
-    adminlink: "https://agent.milkywayapp.xyz/"
+    adminlink: "https://milkywayapp.xyz:8781/default.aspx?638909855923418055"
   },
   {
     name: "Ultra Panda",
     image: "/jpg/panda.jpg",
     link: "https://www.ultrapanda.mobi/",
-    adminlink: "https://agent.ultrapanda.mobi/"
+    adminlink: "https://ht.ultrapanda.mobi/#/login?redirect=%2Fmanage-user%2Faccount"
   },
   {
     name: "Cash Frenzy",
     image: "/jpg/frenzy.jpg",
     link: "https://www.cashfrenzy777.com/",
-    adminlink: "https://agent.cashfrenzy777.com/"
+    adminlink: "https://agentserver.cashfrenzy777.com/admin/login"
   },
   { 
     name: "PandaMaster", 
     image: "/jpg/pandamaster.jpg", 
     link: "nolink",
-    adminlink: "nolink"
+    adminlink: "https://pandamaster.vip/default.aspx?637813679673319920"
   },
   {
     name: "V Blink",
     image: "/jpg/vblink.jpg",
     link: "https://www.vblink777.club/",
-    adminlink: "https://agent.vblink777.club/"
+    adminlink: "https://gm.vblink777.club/#/login?redirect=%2F"
   },
   {
     name: "River Sweeps",
     image: "/jpg/reversweeps.png",
     link: "https://bet777.eu/",
-    adminlink: "https://agent.bet777.eu/"
+    adminlink: "https://river-pay.com/office/login"
   },
   {
     name: "HighStake",
     image: "/jpg/highstake.jpg",
     link: "https://dl.highstakesweeps.com/",
-    adminlink: "https://agent.highstakesweeps.com/"
+    adminlink: "https://ht.highstakesweeps.com/login"
   },
   {
     name: "Vegas X",
     image: "/jpg/vegasx.png",
     link: "https://www.vegas-x.org/",
-    adminlink: "https://agent.vegas-x.org/"
+    adminlink: "https://cashier.vegas-x.org/login"
   },
   { 
     name: "Ace Book", 
@@ -99,7 +99,7 @@ const games = [
     name: "Blue Dragon",
     image: "/jpg/dragons.jpg",
     link: "http://app.bluedragon777.com/",
-    adminlink: "http://agent.bluedragon777.com/"
+    adminlink: "https://agent.bluedragon777.com/Login.aspx"
   },
   {
     name: "Para",
@@ -117,13 +117,13 @@ const games = [
     name: "Moolah",
     image: "/jpg/moolah.jpg",
     link: "https://moolah.vip:8888/",
-    adminlink: " https://moolah.vip:8781/Agent.aspx",
+    adminlink: " https://moolah.vip:8781/default.aspx?638294807507914993",
   },
   { 
     name: "Sirus", 
     image: "/jpg/sirus.jpg", 
-    link: "nolink",
-    adminlink: "nolink"
+    link: "https://m.gamesirius999.com/",
+    adminlink: "https://agent.gamesirius999.com/login"
   },
   {
     name: "Mega Spin",
@@ -134,8 +134,8 @@ const games = [
   { 
     name: "Egames", 
     image: "/jpg/egames.jpg", 
-    link: "nolink",
-    adminlink: "nolink"
+    link: "https://www.egame99.club/",
+    adminlink: "https://pko.egame99.club/#/login?redirect=%2Freport%2Fagent-total-profitk"
   },
   { 
     name: "Loot", 
