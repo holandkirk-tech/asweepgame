@@ -4,91 +4,150 @@ import type { Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const games = [
-  { name: "FireKirin", image: "/jpg/fire.jpg", link: "https://firekirin.com/" },
+  { 
+    name: "FireKirin", 
+    image: "/jpg/fire.jpg", 
+    link: "https://firekirin.com/",
+    adminlink: "https://agent.firekirin.com/"
+  },
   {
     name: "OrionStar",
     image: "/jpg/orion.jpg",
     link: "http://start.orionstars.vip:8580/",
+    adminlink: "http://agent.orionstars.vip:8580/"
   },
-  { name: "Juwa", image: "/jpg/juwa.jpg", link: "https://dl.juwa777.com/" },
+  { 
+    name: "Juwa", 
+    image: "/jpg/juwa.jpg", 
+    link: "https://dl.juwa777.com/",
+    adminlink: "https://agent.juwa777.com/"
+  },
   // { name: "Game", image: "/jpg/gamee.jpg", link:"" },
   {
     name: "Game Vault",
     image: "/jpg/vault.jpg",
     link: "https://download.gamevault999.com/",
+    adminlink: "https://agent.gamevault999.com/"
   },
-  { name: "CasinoRoyale", image: "/jpg/royale.jpg", link: "nolink" },
+  { 
+    name: "CasinoRoyale", 
+    image: "/jpg/royale.jpg", 
+    link: "nolink",
+    adminlink: "nolink"
+  },
   {
     name: "VegasSweep",
     image: "/jpg/vegas.jpg",
     link: "https://m.lasvegassweeps.com/",
+    adminlink: "https://agent.lasvegassweeps.com/"
   },
   {
     name: "MilkyWay",
     image: "/jpg/milkyways.jpg",
     link: "https://milkywayapp.xyz/",
+    adminlink: "https://agent.milkywayapp.xyz/"
   },
   {
     name: "Ultra Panda",
     image: "/jpg/panda.jpg",
     link: "https://www.ultrapanda.mobi/",
+    adminlink: "https://agent.ultrapanda.mobi/"
   },
   {
     name: "Cash Frenzy",
     image: "/jpg/frenzy.jpg",
     link: "https://www.cashfrenzy777.com/",
+    adminlink: "https://agent.cashfrenzy777.com/"
   },
-  { name: "PandaMaster", image: "/jpg/pandamaster.jpg", link: "nolink" },
+  { 
+    name: "PandaMaster", 
+    image: "/jpg/pandamaster.jpg", 
+    link: "nolink",
+    adminlink: "nolink"
+  },
   {
     name: "V Blink",
     image: "/jpg/vblink.jpg",
     link: "https://www.vblink777.club/",
+    adminlink: "https://agent.vblink777.club/"
   },
   {
     name: "River Sweeps",
     image: "/jpg/reversweeps.png",
     link: "https://bet777.eu/",
+    adminlink: "https://agent.bet777.eu/"
   },
   {
     name: "HighStake",
     image: "/jpg/highstake.jpg",
     link: "https://dl.highstakesweeps.com/",
+    adminlink: "https://agent.highstakesweeps.com/"
   },
   {
     name: "Vegas X",
     image: "/jpg/vegasx.png",
     link: "https://www.vegas-x.org/",
+    adminlink: "https://agent.vegas-x.org/"
   },
-  { name: "Ace Book", image: "/jpg/ace.jpg", link: "nolink" },
+  { 
+    name: "Ace Book", 
+    image: "/jpg/ace.jpg", 
+    link: "nolink",
+    adminlink: "nolink"
+  },
   {
     name: "Blue Dragon",
     image: "/jpg/dragons.jpg",
     link: "http://app.bluedragon777.com/",
+    adminlink: "http://agent.bluedragon777.com/"
   },
   {
     name: "Para",
     image: "/jpg/para.jpg",
     link: "https://download.paracasino.net/",
+    adminlink: "https://agent.paracasino.net/"
   },
-  { name: "River Monster", image: "/jpg/river.png", link: "https://rm777.net/" },
+  { 
+    name: "River Monster", 
+    image: "/jpg/river.png", 
+    link: "https://rm777.net/",
+    adminlink: "https://agent.rm777.net/"
+  },
   {
     name: "Moolah",
     image: "/jpg/moolah.jpg",
     link: "https://moolah.vip:8888/",
     adminlink: " https://moolah.vip:8781/Agent.aspx",
   },
-  { name: "Sirus", image: "/jpg/sirus.jpg", link: "nolink" },
+  { 
+    name: "Sirus", 
+    image: "/jpg/sirus.jpg", 
+    link: "nolink",
+    adminlink: "nolink"
+  },
   {
     name: "Mega Spin",
     image: "/jpg/megaspin.jpg",
     link: "https://www.megaspinsweeps.com/",
+    adminlink: "https://agent.megaspinsweeps.com/"
   },
-  { name: "Egames", image: "/jpg/egames.jpg", link: "nolink" },
-  { name: "Loot", image: "/jpg/loot.jpg", link: "https://m.lootgame777.com/" },
+  { 
+    name: "Egames", 
+    image: "/jpg/egames.jpg", 
+    link: "nolink",
+    adminlink: "nolink"
+  },
+  { 
+    name: "Loot", 
+    image: "/jpg/loot.jpg", 
+    link: "https://m.lootgame777.com/",
+    adminlink: "https://agent.lootgame777.com/"
+  },
   {
     name: "Egnite",
     image: "/jpg/ignite.jpg",
     link: "https://download.casinoignite.vip/",
+    adminlink: "https://agent.casinoignite.vip/"
   },
   {
     name: "Game Room",
@@ -96,7 +155,12 @@ const games = [
     link: "https://www.gameroom777.com/",
     adminlink: "http://dl.gameroom777.com/",
   },
-  { name: "Yolo", image: "/jpg/yolo.png", link: "https://yolo777.game/" },
+  { 
+    name: "Yolo", 
+    image: "/jpg/yolo.png", 
+    link: "https://yolo777.game/",
+    adminlink: "https://agent.yolo777.game/"
+  },
   {
     name: "Mafia",
     image: "/jpg/mafia.png",
@@ -120,6 +184,7 @@ const games = [
     name: "Billion Balls",
     image: "/jpg/billionballs.png",
     link: "https://billionballs.club/",
+    adminlink: "https://agent.billionballs.club/"
   },
 ];
 

@@ -161,3 +161,4 @@ export default function AdminLogin({ onLoginSuccess, onClose }: AdminLoginProps)
     </div>
   );
 }
+
