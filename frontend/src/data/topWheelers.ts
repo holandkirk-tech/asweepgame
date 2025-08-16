@@ -1,4 +1,10 @@
-/* Random Top Wheelers data + 24h localStorage caching */
+/* Random Top Wheelers Visual Display - Updates every 24 hours
+ * This is a visual leaderboard that randomly selects:
+ * - Player names from a predefined list
+ * - Player profile images from /public/players/
+ * - Fixed prize amounts: $100, $75, $50 for positions 1, 2, 3
+ * Data refreshes automatically every 24 hours for variety
+ */
 
 export type Wheeler = { name: string; img: string; wins: number };
 
@@ -6,12 +12,25 @@ export const REFRESH_MS = 24 * 60 * 60 * 1000; // 24 hours
 const IMG_COUNT = 12; // how many /public/players/playerN.jpg images you have
 
 export const NAMES: string[] = [
-  "Mary Johnson","Sylvia Miller","Phillip Calderon","James Carter","Sophia Roberts",
-  "Liam Thompson","Isabella Martinez","Noah Anderson","Emma White","Mason Lewis",
-  "Ava Hall","Lucas Allen","Mia Young","Ethan Hernandez","Charlotte King",
-  "Benjamin Wright","Amelia Scott","Elijah Green","Harper Adams","Oliver Nelson",
-  "Ella Baker","Henry Rivera","Grace Perez","Alexander Campbell","Chloe Mitchell",
-  "Daniel Moore","Abigail Stewart","Matthew Flores","Scarlett Torres","Jack Morgan"
+  // Classic American Names
+  "Mary Johnson", "Sylvia Miller", "Phillip Calderon", "James Carter", "Sophia Roberts",
+  "Liam Thompson", "Isabella Martinez", "Noah Anderson", "Emma White", "Mason Lewis",
+  "Ava Hall", "Lucas Allen", "Mia Young", "Ethan Hernandez", "Charlotte King",
+  "Benjamin Wright", "Amelia Scott", "Elijah Green", "Harper Adams", "Oliver Nelson",
+  "Ella Baker", "Henry Rivera", "Grace Perez", "Alexander Campbell", "Chloe Mitchell",
+  "Daniel Moore", "Abigail Stewart", "Matthew Flores", "Scarlett Torres", "Jack Morgan",
+  
+  // Additional Diverse Names
+  "Zoe Parker", "Ryan Cooper", "Maya Patel", "Tyler Brooks", "Aria Davis",
+  "Jordan Wilson", "Layla Garcia", "Connor Murphy", "Nora Rodriguez", "Austin Lee",
+  "Hazel Collins", "Blake Edwards", "Luna Gonzalez", "Caleb Turner", "Violet Phillips",
+  "Ian Stewart", "Penelope Cox", "Xavier Reed", "Aurora Bailey", "Jaxon Kelly",
+  "Stella Howard", "Brayden Ward", "Ivy Torres", "Grayson Peterson", "Willow Gray",
+  "Easton Ramirez", "Nova James", "Hudson Watson", "Paisley Brooks", "Maverick Powell",
+  "Emilia Jenkins", "Ryder Perry", "Kinsley Russell", "Asher Griffin", "Delilah Diaz",
+  "Kai Henderson", "Aaliyah Butler", "Felix Coleman", "Savannah Foster", "Theo Gonzales",
+  "Cora Hughes", "Silas Flores", "Lydia Sanders", "Jasper Price", "Clara Bennett",
+  "Axel Wood", "Ellie Barnes", "Miles Ross", "Natalie Henderson", "Ezra Martinez"
 ];
 
 function buildImageList(count = IMG_COUNT): string[] {
@@ -27,14 +46,18 @@ function pickUnique<T>(arr: T[], n: number): T[] {
   return copy.slice(0, n);
 }
 
+// Fixed prize amounts for top 3 positions
+const FIXED_PRIZES = [100.00, 75.00, 50.00]; // 1st: $100, 2nd: $75, 3rd: $50
+
 export function randomTopWheelers(): Wheeler[] {
   const images = buildImageList();
   const chosenNames = pickUnique(NAMES, 3);
   const chosenImgs = pickUnique(images, 3);
+  
   return [0, 1, 2].map(i => ({
     name: chosenNames[i],
     img: chosenImgs[i],
-    wins: parseFloat((Math.random() * (100 - 50) + 50).toFixed(2)) // $50–$100
+    wins: FIXED_PRIZES[i] // Fixed amounts: $100, $75, $50
   }));
 }
 
