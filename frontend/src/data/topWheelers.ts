@@ -34,7 +34,22 @@ export const NAMES: string[] = [
 ];
 
 function buildImageList(count = IMG_COUNT): string[] {
-  return Array.from({ length: count }, (_, i) => `/players/player${i + 1}.jpg`);
+  // Check actual file names in /public/players/ folder
+  const imageFiles = [
+    '/players/player1_circle_1024.png',
+    '/players/player2_circle_1024.png', 
+    '/players/player3_circle_512.png',
+    '/players/player4_circle_512.png',
+    '/players/player5_circle_512.png',
+    '/players/player6_circle_512.png',
+    '/players/player7_circle_512.png',
+    '/players/player8_circle_512.png',
+    '/players/player9_circle_512.png',
+    '/players/player10_circle_512.png',
+    '/players/player11_circle_512.png',
+    '/players/player12_circle_512.png'
+  ];
+  return imageFiles.slice(0, count);
 }
 
 function pickUnique<T>(arr: T[], n: number): T[] {
@@ -63,23 +78,31 @@ export function randomTopWheelers(): Wheeler[] {
 
 const LS_KEY_DATA = "topWheelers:data";
 const LS_KEY_TS = "topWheelers:ts";
+const LS_KEY_VERSION = "topWheelers:version";
+const CURRENT_VERSION = "2.0"; // Increment this when data structure changes
 
 export function getDailyWheelers(now = Date.now()): Wheeler[] {
   if (typeof window === "undefined") return randomTopWheelers();
   try {
     const tsStr = localStorage.getItem(LS_KEY_TS);
     const dataStr = localStorage.getItem(LS_KEY_DATA);
-    if (tsStr && dataStr) {
+    const versionStr = localStorage.getItem(LS_KEY_VERSION);
+    
+    // Check if we have valid cached data and correct version
+    if (tsStr && dataStr && versionStr === CURRENT_VERSION) {
       const ts = Number(tsStr);
       if (!Number.isNaN(ts) && now - ts < REFRESH_MS) {
         return JSON.parse(dataStr) as Wheeler[];
       }
     }
   } catch {}
+  
+  // Generate fresh data
   const fresh = randomTopWheelers();
   try {
     localStorage.setItem(LS_KEY_DATA, JSON.stringify(fresh));
     localStorage.setItem(LS_KEY_TS, String(now));
+    localStorage.setItem(LS_KEY_VERSION, CURRENT_VERSION);
   } catch {}
   return fresh;
 }
@@ -89,6 +112,7 @@ export function forceRefreshDailyWheelers(): Wheeler[] {
   if (typeof window !== "undefined") {
     localStorage.setItem(LS_KEY_DATA, JSON.stringify(fresh));
     localStorage.setItem(LS_KEY_TS, String(Date.now()));
+    localStorage.setItem(LS_KEY_VERSION, CURRENT_VERSION);
   }
   return fresh;
 }
