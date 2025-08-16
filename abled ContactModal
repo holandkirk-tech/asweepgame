@@ -1,0 +1,42 @@
+[33mcommit 85408d865dc7794b1c7900afd786340082d3880e[m
+Author: holandkirk-tech <holandkirk.tech@gmail.com>
+Date:   Sat Aug 16 11:17:59 2025 -0500
+
+     Add Contact Modals for WhatsApp & Telegram
+    
+     Complete Contact System Implementation
+      - Created ContactModal component with beautiful UI
+      - Added phone number: 8177509750 for both services
+      - Integrated with both Navbar and AdminNavbar components
+    
+     Features Implemented:
+       WhatsApp Modal:
+        - Shows contact info with phone number
+        - Direct link to WhatsApp chat: wa.me/8177509750
+        - Green gradient theme matching WhatsApp branding
+    
+       Telegram Modal:
+        - Shows contact info with same phone number
+        - Direct link to Telegram: t.me/8177509750
+        - Blue gradient theme matching Telegram branding
+    
+     User Experience:
+      - Click phone button  WhatsApp contact modal
+      - Click telegram button  Telegram contact modal
+      - Beautiful animations with Framer Motion
+      - Responsive design for mobile & desktop
+      - Hover effects and smooth transitions
+      - Click outside to close or use X button
+    
+     Integration:
+      - Works in main Navbar (home page)
+      - Works in AdminNavbar (admin pages)
+      - Both desktop and mobile menu buttons functional
+      - Consistent styling with existing design
+    
+    Users can now easily contact support via WhatsApp or
+    Telegram using the phone number 8177509750!
+
+frontend/src/components/AdminNavbar.tsx
+frontend/src/components/ContactModal.tsx
+frontend/src/components/Navbar.tsx
